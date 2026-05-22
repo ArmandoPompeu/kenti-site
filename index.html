@@ -120,6 +120,49 @@
       padding: 6px 16px; border-radius: 50px; margin-bottom: 20px;
     }
 
+    /* ─── HERO GLOW ANIMADO ─── */
+    @keyframes heroGlowPulse {
+      0%, 100% { opacity: 0.14; transform: translateY(-50%) scale(1); }
+      50%       { opacity: 0.22; transform: translateY(-50%) scale(1.12); }
+    }
+    #hero .hero-glow {
+      animation: heroGlowPulse 5s ease-in-out infinite;
+    }
+    @keyframes heroGlowLeftPulse {
+      0%, 100% { opacity: 0.07; transform: scale(1); }
+      50%       { opacity: 0.13; transform: scale(1.15); }
+    }
+    #hero .hero-glow-left {
+      animation: heroGlowLeftPulse 7s ease-in-out infinite 1.5s;
+    }
+
+    /* Partícula de fogo sutil no hero */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 75% 50%, rgba(255,100,0,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 50% at 20% 80%, rgba(255,50,0,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ─── GLASSMORPHISM (bento cards sobre dark) ─── */
+    .bento-card {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .bento-card.bento-featured {
+      background: rgba(255,140,0,0.06);
+      border-color: rgba(255,140,0,0.18);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .bento-card:hover {
+      background: rgba(255,255,255,0.06) !important;
+    }
+
     /* ─── ANIMAÇÕES DE ENTRADA ─── */
     .reveal {
       opacity: 0; transform: translateY(32px);
@@ -783,15 +826,15 @@
     <div class="container">
       <div class="stats-grid">
         <div class="stat-item reveal">
-          <div class="stat-num" data-target="5" data-suffix="h">5h</div>
+          <div class="stat-num" data-target="5" data-suffix="h" data-prefix="">0h</div>
           <div class="stat-label">de autonomia por recarga</div>
         </div>
         <div class="stat-item reveal reveal-delay-1">
-          <div class="stat-num">+15km</div>
+          <div class="stat-num" data-target="15" data-suffix="km" data-prefix="+">+0km</div>
           <div class="stat-label">de entrega sem esfriar</div>
         </div>
         <div class="stat-item reveal reveal-delay-2">
-          <div class="stat-num">100%</div>
+          <div class="stat-num" data-target="100" data-suffix="%" data-prefix="">0%</div>
           <div class="stat-label">automatizada e inteligente</div>
         </div>
         <div class="stat-item reveal reveal-delay-3">
@@ -883,11 +926,11 @@
   </a>
 
   <script>
-    // Navbar scroll
+    // ── Navbar scroll ──
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
 
-    // Mobile menu
+    // ── Mobile menu ──
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileClose = document.getElementById('mobileClose');
@@ -895,14 +938,47 @@
     mobileClose.addEventListener('click', closeMobile);
     function closeMobile() { mobileMenu.classList.remove('open'); }
 
-    // Reveal on scroll
+    // ── Reveal on scroll ──
     const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => observer.observe(el));
+    reveals.forEach(el => revealObserver.observe(el));
 
-    // Smooth scroll
+    // ── Contador animado nos Stats ──
+    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+    function animateCounter(el) {
+      const target  = parseInt(el.dataset.target);
+      const suffix  = el.dataset.suffix  || '';
+      const prefix  = el.dataset.prefix  || '';
+      const duration = 1800;
+      const start = performance.now();
+
+      function tick(now) {
+        const elapsed  = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased    = easeOutCubic(progress);
+        const value    = Math.round(eased * target);
+        el.textContent = prefix + value + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = prefix + target + suffix; // valor final exato
+      }
+      requestAnimationFrame(tick);
+    }
+
+    const counterEls = document.querySelectorAll('.stat-num[data-target]');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCounter(e.target);
+          counterObserver.unobserve(e.target); // roda só uma vez
+        }
+      });
+    }, { threshold: 0.5 });
+    counterEls.forEach(el => counterObserver.observe(el));
+
+    // ── Smooth scroll ──
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const target = document.querySelector(this.getAttribute('href'));
