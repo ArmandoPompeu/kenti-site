@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kenti — A Bag Aquecida que Revoluciona o Delivery</title>
   <meta name="description" content="Kenti é a mochila aquecida com tecnologia patenteada que mantém a comida quente do restaurante até o cliente. Aumente satisfação, vendas e lucro no delivery.">
-  <meta property="og:title" content="Kenti — Se a bag não for Kenti, é fria">
-  <meta property="og:description" content="Tecnologia revolucionária que garante comida quente em qualquer distância. A revolução do delivery chegou.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -23,109 +21,111 @@
       --fire2:     #FF4500;
       --fire3:     #CC1A00;
       --gradient:  linear-gradient(135deg, #FF8C00 0%, #FF4500 60%, #CC1A00 100%);
-      --gradient2: linear-gradient(135deg, #FF6B00, #FF2200);
-      --text:      #FFFFFF;
-      --muted:     #888888;
-      --subtle:    #444444;
+      --gradient2: linear-gradient(135deg, #FF7300, #FF3000);
+      /* Laranja das seções */
+      --orange-bg: linear-gradient(145deg, #FF7000 0%, #FF4500 55%, #E03000 100%);
       --radius:    16px;
       --radius-lg: 24px;
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Inter', sans-serif;
       background: var(--bg);
-      color: var(--text);
+      color: #fff;
       overflow-x: hidden;
       line-height: 1.6;
     }
-
-    /* ─── SCROLLBAR ─── */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--fire2); border-radius: 4px; }
 
-    /* ─── UTILITIES ─── */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
+    /* ─── NOISE TEXTURE (para seções laranjas) ─── */
+    .noise-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.055;
+      pointer-events: none;
+      z-index: 1;
     }
+
+    /* ─── UTILIDADES ─── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
     .gradient-text {
       background: var(--gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
+    /* Botões dark */
     .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--gradient2);
-      color: #fff;
-      font-weight: 700;
-      font-size: 15px;
-      padding: 16px 32px;
-      border-radius: 50px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gradient2); color: #fff;
+      font-weight: 700; font-size: 15px;
+      padding: 16px 32px; border-radius: 50px;
+      text-decoration: none; border: none; cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 8px 32px rgba(255, 69, 0, 0.35);
+      box-shadow: 0 8px 32px rgba(255,69,0,0.35);
       letter-spacing: 0.3px;
     }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 48px rgba(255, 69, 0, 0.5);
-    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(255,69,0,0.5); }
+
     .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: transparent;
-      color: #fff;
-      font-weight: 600;
-      font-size: 15px;
-      padding: 15px 32px;
-      border-radius: 50px;
-      text-decoration: none;
-      border: 1.5px solid rgba(255,255,255,0.25);
-      cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: #fff;
+      font-weight: 600; font-size: 15px;
+      padding: 15px 32px; border-radius: 50px;
+      text-decoration: none; border: 1.5px solid rgba(255,255,255,0.25);
+      cursor: pointer; transition: all 0.3s ease;
+    }
+    .btn-outline:hover { border-color: var(--fire1); color: var(--fire1); transform: translateY(-2px); }
+
+    /* Botão para seções laranjas */
+    .btn-light {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; color: #FF4500;
+      font-weight: 800; font-size: 15px;
+      padding: 16px 32px; border-radius: 50px;
+      text-decoration: none; border: none; cursor: pointer;
       transition: all 0.3s ease;
-      letter-spacing: 0.3px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
     }
-    .btn-outline:hover {
-      border-color: var(--fire1);
-      color: var(--fire1);
-      transform: translateY(-2px);
+    .btn-light:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+
+    .btn-outline-light {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: #fff;
+      font-weight: 600; font-size: 15px;
+      padding: 15px 32px; border-radius: 50px;
+      text-decoration: none; border: 1.5px solid rgba(255,255,255,0.55);
+      cursor: pointer; transition: all 0.3s ease;
     }
-    .section-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--fire1);
-      background: rgba(255, 140, 0, 0.1);
-      border: 1px solid rgba(255, 140, 0, 0.2);
-      padding: 6px 16px;
-      border-radius: 50px;
-      margin-bottom: 20px;
+    .btn-outline-light:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+
+    .section-label-dark {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+      color: var(--fire1); background: rgba(255,140,0,0.1);
+      border: 1px solid rgba(255,140,0,0.25);
+      padding: 6px 16px; border-radius: 50px; margin-bottom: 20px;
+    }
+    .section-label-light {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+      color: #FF4500; background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(255,255,255,0.5);
+      padding: 6px 16px; border-radius: 50px; margin-bottom: 20px;
     }
 
-    /* ─── FADE IN ON SCROLL ─── */
+    /* ─── ANIMAÇÕES DE ENTRADA ─── */
     .reveal {
-      opacity: 0;
-      transform: translateY(32px);
+      opacity: 0; transform: translateY(32px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
@@ -134,836 +134,341 @@
 
     /* ─── NAVBAR ─── */
     nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 20px 0;
-      transition: all 0.3s ease;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 20px 0; transition: all 0.3s ease;
     }
     nav.scrolled {
-      background: rgba(8, 8, 8, 0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
+      background: rgba(8,8,8,0.92);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      padding: 14px 0; border-bottom: 1px solid var(--border);
     }
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-    }
-    .nav-logo img {
-      height: 40px;
-      width: auto;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 36px;
-      list-style: none;
-    }
-    .nav-links a {
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .nav-logo img { height: 40px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
     .nav-links a:hover { color: #fff; }
-    .nav-cta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
     .nav-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--gradient2);
-      color: #fff;
-      font-weight: 700;
-      font-size: 13px;
-      padding: 10px 22px;
-      border-radius: 50px;
-      text-decoration: none;
-      transition: all 0.3s;
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--gradient2); color: #fff;
+      font-weight: 700; font-size: 13px;
+      padding: 10px 22px; border-radius: 50px;
+      text-decoration: none; transition: all 0.3s;
       box-shadow: 0 4px 20px rgba(255,69,0,0.3);
     }
-    .nav-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 28px rgba(255,69,0,0.45);
-    }
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 4px;
-    }
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: #fff;
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
+    .nav-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(255,69,0,0.45); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
     .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(8,8,8,0.98);
-      z-index: 200;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(8,8,8,0.98); z-index: 200;
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
     }
     .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 24px;
-      font-weight: 700;
-    }
-    .mobile-close {
-      position: absolute;
-      top: 24px;
-      right: 24px;
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 28px;
-      cursor: pointer;
-    }
+    .mobile-menu a { color: #fff; text-decoration: none; font-size: 24px; font-weight: 700; }
+    .mobile-close { position: absolute; top: 24px; right: 24px; background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; }
 
-    /* ─── HERO ─── */
+    /* ─── HERO (DARK) ─── */
     #hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 120px 0 80px;
-      position: relative;
-      overflow: hidden;
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 120px 0 80px; position: relative; overflow: hidden;
+      background: var(--bg);
     }
     .hero-glow {
-      position: absolute;
-      top: 50%;
-      right: -10%;
-      transform: translateY(-50%);
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle, rgba(255, 100, 0, 0.15) 0%, transparent 70%);
+      position: absolute; top: 50%; right: -10%; transform: translateY(-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(255,100,0,0.14) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero-glow-left {
-      position: absolute;
-      bottom: 0;
-      left: -5%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(255, 50, 0, 0.08) 0%, transparent 70%);
+      position: absolute; bottom: 0; left: -5%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,50,0,0.07) 0%, transparent 70%);
       pointer-events: none;
     }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
-    }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
     .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255,140,0,0.1);
-      border: 1px solid rgba(255,140,0,0.25);
-      color: var(--fire1);
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      padding: 8px 18px;
-      border-radius: 50px;
-      margin-bottom: 28px;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,140,0,0.1); border: 1px solid rgba(255,140,0,0.25);
+      color: var(--fire1); font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+      padding: 8px 18px; border-radius: 50px; margin-bottom: 28px;
     }
     .hero-badge::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: var(--fire1);
-      border-radius: 50%;
+      content: ''; width: 6px; height: 6px;
+      background: var(--fire1); border-radius: 50%;
       animation: pulse 2s infinite;
     }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(1.4); }
-    }
-    .hero-title {
-      font-size: clamp(42px, 5.5vw, 72px);
-      font-weight: 900;
-      line-height: 1.05;
-      margin-bottom: 24px;
-      letter-spacing: -1.5px;
-    }
-    .hero-subtitle {
-      font-size: 18px;
-      color: rgba(255,255,255,0.65);
-      line-height: 1.7;
-      margin-bottom: 40px;
-      max-width: 520px;
-    }
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 52px;
-    }
-    .hero-stats {
-      display: flex;
-      gap: 40px;
-    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+    .hero-title { font-size: clamp(42px,5.5vw,72px); font-weight: 900; line-height: 1.05; margin-bottom: 24px; letter-spacing: -1.5px; }
+    .hero-subtitle { font-size: 18px; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 40px; max-width: 520px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 52px; }
+    .hero-stats { display: flex; gap: 40px; }
     .hero-stat-value {
-      font-size: 32px;
-      font-weight: 900;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1;
-      margin-bottom: 4px;
+      font-size: 32px; font-weight: 900;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      line-height: 1; margin-bottom: 4px;
     }
-    .hero-stat-label {
-      font-size: 13px;
-      color: var(--muted);
-      font-weight: 500;
-    }
-    .hero-divider {
-      width: 1px;
-      background: var(--border);
-    }
-    .hero-visual {
-      position: relative;
-      display: flex;
-      justify-content: center;
-    }
-    .hero-img-wrap {
-      position: relative;
-    }
-    .hero-bag-img {
-      width: 100%;
-      max-width: 520px;
-      border-radius: var(--radius-lg);
-      display: block;
-      position: relative;
-      z-index: 1;
-      animation: float 6s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-14px); }
-    }
-    .hero-glow-ring {
-      position: absolute;
-      inset: -20px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,100,0,0.2) 0%, transparent 65%);
-      z-index: 0;
-    }
+    .hero-stat-label { font-size: 13px; color: rgba(255,255,255,0.45); font-weight: 500; }
+    .hero-divider { width: 1px; background: var(--border); }
+    .hero-visual { position: relative; display: flex; justify-content: center; }
+    .hero-img-wrap { position: relative; }
+    .hero-bag-img { width: 100%; max-width: 520px; border-radius: var(--radius-lg); display: block; position: relative; z-index: 1; animation: float 6s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+    .hero-glow-ring { position: absolute; inset: -20px; border-radius: 50%; background: radial-gradient(circle, rgba(255,100,0,0.18) 0%, transparent 65%); z-index: 0; }
     .hero-tag {
-      position: absolute;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-      z-index: 2;
-      backdrop-filter: blur(10px);
+      position: absolute; background: rgba(20,20,20,0.85);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 14px;
+      padding: 14px 18px; display: flex; align-items: center; gap: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5); z-index: 2;
+      backdrop-filter: blur(12px);
     }
     .hero-tag-icon { font-size: 22px; }
     .hero-tag-text { font-size: 13px; font-weight: 700; color: #fff; }
-    .hero-tag-sub { font-size: 11px; color: var(--muted); }
-    .hero-tag-1 {
-      top: 20px;
-      right: -20px;
-      animation: float 5s ease-in-out infinite 1s;
-    }
-    .hero-tag-2 {
-      bottom: 60px;
-      left: -30px;
-      animation: float 7s ease-in-out infinite 0.5s;
-    }
+    .hero-tag-sub { font-size: 11px; color: rgba(255,255,255,0.45); }
+    .hero-tag-1 { top: 20px; right: -20px; animation: float 5s ease-in-out infinite 1s; }
+    .hero-tag-2 { bottom: 60px; left: -30px; animation: float 7s ease-in-out infinite 0.5s; }
 
-    /* ─── PARTNERS MARQUEE ─── */
+    /* ─── PARTNERS BAR (DARK) ─── */
     #partners-bar {
       padding: 32px 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-      overflow: hidden;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      background: var(--surface); overflow: hidden;
     }
-    .partners-label {
-      text-align: center;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 24px;
-    }
-    .marquee-track {
-      display: flex;
-      gap: 64px;
-      align-items: center;
-      animation: marquee 18s linear infinite;
-      width: max-content;
-    }
+    .partners-label { text-align: center; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; }
+    .marquee-track { display: flex; gap: 64px; align-items: center; animation: marquee 18s linear infinite; width: max-content; }
     .marquee-track:hover { animation-play-state: paused; }
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .partner-logo {
-      height: 48px;
-      width: auto;
-      filter: grayscale(100%) brightness(150%);
-      opacity: 0.55;
-      transition: all 0.3s;
-      flex-shrink: 0;
-      object-fit: contain;
-      border-radius: 8px;
-    }
-    .partner-logo:hover {
-      filter: grayscale(0%);
-      opacity: 1;
-    }
+    @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    .partner-logo { height: 48px; width: auto; filter: grayscale(100%) brightness(200%); opacity: 0.4; transition: all 0.3s; flex-shrink: 0; object-fit: contain; border-radius: 8px; }
+    .partner-logo:hover { filter: grayscale(0%); opacity: 1; }
 
-    /* ─── PROBLEM SECTION ─── */
+    /* ─── PROBLEM (LARANJA) ─── */
     #problem {
-      padding: 100px 0;
-      position: relative;
-      overflow: hidden;
+      padding: 100px 0; position: relative; overflow: hidden;
+      background: var(--orange-bg);
     }
-    .problem-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('https://static.wixstatic.com/media/49b7605f924d0dc784d616d0c9b53748.jpg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.06;
-    }
-    .problem-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-    .problem-img {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      position: relative;
-    }
-    .problem-img img {
-      width: 100%;
-      height: 480px;
-      object-fit: cover;
-      display: block;
-    }
+    .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 2; }
+    .problem-img { border-radius: var(--radius-lg); overflow: hidden; position: relative; }
+    .problem-img img { width: 100%; height: 480px; object-fit: cover; display: block; }
     .problem-img::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 70%, rgba(8,8,8,0.35));
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(200,50,0,0.45));
     }
-    .problem-content { }
-    .problem-title {
-      font-size: clamp(32px, 4vw, 52px);
-      font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 24px;
-      letter-spacing: -1px;
-    }
-    .problem-text {
-      font-size: 17px;
-      color: rgba(255,255,255,0.65);
-      line-height: 1.75;
-      margin-bottom: 32px;
-    }
-    .problem-list {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .problem-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      font-size: 15px;
-      color: rgba(255,255,255,0.75);
-      line-height: 1.5;
-    }
-    .problem-item-icon {
-      font-size: 18px;
-      margin-top: 1px;
-      flex-shrink: 0;
-    }
+    .problem-title { font-size: clamp(32px,4vw,52px); font-weight: 900; line-height: 1.1; margin-bottom: 24px; letter-spacing: -1px; color: #fff; }
+    .problem-text { font-size: 17px; color: rgba(255,255,255,0.82); line-height: 1.75; margin-bottom: 32px; }
+    .problem-list { display: flex; flex-direction: column; gap: 14px; }
+    .problem-item { display: flex; align-items: flex-start; gap: 14px; font-size: 15px; color: rgba(255,255,255,0.88); line-height: 1.5; }
+    .problem-item-icon { font-size: 18px; margin-top: 1px; flex-shrink: 0; }
 
-    /* ─── SOLUTION / PRODUCT ─── */
-    #solution {
-      padding: 100px 0;
-      background: var(--surface);
-    }
-    .solution-header {
-      text-align: center;
-      margin-bottom: 72px;
-    }
-    .section-title {
-      font-size: clamp(32px, 4vw, 52px);
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -1px;
-      margin-bottom: 16px;
-    }
-    .section-subtitle {
-      font-size: 18px;
-      color: var(--muted);
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-    .features-grid {
+    /* ─── SOLUTION / BENTO GRID (DARK) ─── */
+    #solution { padding: 100px 0; background: var(--bg); }
+    .solution-header { text-align: center; margin-bottom: 64px; }
+    .section-title { font-size: clamp(32px,4vw,52px); font-weight: 900; line-height: 1.1; letter-spacing: -1px; margin-bottom: 16px; }
+    .section-subtitle { font-size: 18px; color: rgba(255,255,255,0.45); max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+    /* BENTO GRID */
+    .bento-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      grid-template-rows: auto auto auto;
+      gap: 20px;
     }
-    .feature-card {
-      background: var(--surface2);
+    .bento-card {
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 32px;
-      transition: all 0.3s ease;
-    }
-    .feature-card:hover {
-      border-color: rgba(255,140,0,0.4);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(255,69,0,0.12);
-    }
-    .feature-icon {
-      width: 52px;
-      height: 52px;
-      background: rgba(255,140,0,0.1);
-      border: 1px solid rgba(255,140,0,0.2);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-    .feature-title {
-      font-size: 17px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: #fff;
-    }
-    .feature-text {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    /* ─── HOW IT WORKS ─── */
-    #how {
-      padding: 100px 0;
-    }
-    .how-header {
-      text-align: center;
-      margin-bottom: 72px;
-    }
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
-      position: relative;
-    }
-    .steps-grid::before {
-      content: '';
-      position: absolute;
-      top: 40px;
-      left: calc(16.66% + 40px);
-      right: calc(16.66% + 40px);
-      height: 1px;
-      background: linear-gradient(90deg, var(--fire1), var(--fire2), var(--fire1));
-      opacity: 0.4;
-    }
-    .step-card {
-      text-align: center;
-      position: relative;
-    }
-    .step-num {
-      width: 80px;
-      height: 80px;
-      background: var(--gradient2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      font-weight: 900;
-      color: #fff;
-      margin: 0 auto 28px;
-      box-shadow: 0 12px 40px rgba(255,69,0,0.35);
-      position: relative;
-      z-index: 1;
-    }
-    .step-title {
-      font-size: 20px;
-      font-weight: 800;
-      margin-bottom: 12px;
-    }
-    .step-text {
-      font-size: 15px;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    /* ─── FOR WHOM ─── */
-    #for-whom {
-      padding: 100px 0;
-      background: var(--surface);
-    }
-    .whom-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
-    .whom-card {
       border-radius: var(--radius-lg);
-      overflow: hidden;
+      padding: 36px;
+      transition: all 0.35s ease;
       position: relative;
-      min-height: 480px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 40px;
-      cursor: default;
+      overflow: hidden;
     }
-    .whom-card-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      transition: transform 0.6s ease;
+    .bento-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--gradient2);
+      opacity: 0; transition: opacity 0.35s ease;
+      border-radius: var(--radius-lg);
     }
+    .bento-card:hover { border-color: rgba(255,140,0,0.5); transform: translateY(-4px); box-shadow: 0 24px 60px rgba(255,69,0,0.15); }
+    .bento-card:hover::before { opacity: 0.04; }
+    .bento-card > * { position: relative; z-index: 1; }
+
+    /* Tamanhos bento */
+    .bento-wide   { grid-column: span 2; }
+    .bento-tall   { grid-row: span 2; }
+    .bento-full   { grid-column: span 3; }
+
+    /* Card grande: destaque visual diferenciado */
+    .bento-card.bento-featured {
+      background: linear-gradient(145deg, #161616, #1a1a1a);
+      border-color: rgba(255,140,0,0.2);
+    }
+    .bento-card.bento-tall {
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .bento-icon {
+      width: 56px; height: 56px;
+      background: rgba(255,140,0,0.1); border: 1px solid rgba(255,140,0,0.2);
+      border-radius: 16px; display: flex; align-items: center; justify-content: center;
+      font-size: 26px; margin-bottom: 24px;
+    }
+    .bento-title { font-size: 20px; font-weight: 800; margin-bottom: 10px; color: #fff; }
+    .bento-text { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+    .bento-card.bento-featured .bento-title { font-size: 24px; }
+    .bento-card.bento-featured .bento-text { font-size: 15px; color: rgba(255,255,255,0.6); }
+    .bento-number {
+      font-size: 72px; font-weight: 900; line-height: 1;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-top: auto;
+    }
+
+    /* ─── HOW IT WORKS (LARANJA) ─── */
+    #how { padding: 100px 0; position: relative; overflow: hidden; background: var(--orange-bg); }
+    .how-header { text-align: center; margin-bottom: 72px; position: relative; z-index: 2; }
+    .steps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; position: relative; z-index: 2; }
+    .steps-line {
+      position: absolute; top: 40px;
+      left: calc(16.66% + 40px); right: calc(16.66% + 40px);
+      height: 1px; background: rgba(255,255,255,0.3); z-index: 1;
+    }
+    .step-card { text-align: center; position: relative; }
+    .step-num {
+      width: 80px; height: 80px;
+      background: #fff; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; font-weight: 900; color: #FF4500;
+      margin: 0 auto 28px; position: relative; z-index: 1;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+    }
+    .step-title { font-size: 20px; font-weight: 800; margin-bottom: 12px; color: #fff; }
+    .step-text { font-size: 15px; color: rgba(255,255,255,0.78); line-height: 1.7; }
+    .step-card.glass-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius-lg); padding: 40px 28px;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s;
+    }
+    .step-card.glass-card:hover {
+      background: rgba(255,255,255,0.16);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    }
+
+    /* ─── FOR WHOM (DARK) ─── */
+    #for-whom { padding: 100px 0; background: var(--surface); }
+    .whom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .whom-card {
+      border-radius: var(--radius-lg); overflow: hidden; position: relative;
+      min-height: 500px; display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; cursor: default;
+    }
+    .whom-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s ease; }
     .whom-card:hover .whom-card-bg { transform: scale(1.04); }
     .whom-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(8,8,8,0.05) 0%, rgba(8,8,8,0.55) 55%, rgba(8,8,8,0.82) 100%);
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(8,8,8,0.05) 0%, rgba(8,8,8,0.55) 55%, rgba(8,8,8,0.88) 100%);
     }
-    .whom-content {
-      position: relative;
-      z-index: 1;
-    }
-    .whom-tag {
-      display: inline-block;
-      background: var(--gradient2);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      padding: 6px 16px;
-      border-radius: 50px;
-      margin-bottom: 16px;
-    }
-    .whom-title {
-      font-size: 30px;
-      font-weight: 900;
-      margin-bottom: 16px;
-      line-height: 1.15;
-    }
-    .whom-text {
-      font-size: 15px;
-      color: rgba(255,255,255,0.75);
-      line-height: 1.7;
-      margin-bottom: 28px;
-    }
-    .whom-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 32px;
-    }
-    .whom-list-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      color: rgba(255,255,255,0.85);
-    }
-    .whom-list-item::before {
-      content: '✓';
-      color: var(--fire1);
-      font-weight: 800;
-      font-size: 14px;
-    }
+    .whom-content { position: relative; z-index: 1; }
+    .whom-tag { display: inline-block; background: var(--gradient2); color: #fff; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; padding: 6px 16px; border-radius: 50px; margin-bottom: 16px; }
+    .whom-title { font-size: 30px; font-weight: 900; margin-bottom: 16px; line-height: 1.15; }
+    .whom-text { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 24px; }
+    .whom-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+    .whom-list-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.9); }
+    .whom-list-item::before { content: '✓'; color: var(--fire1); font-weight: 800; font-size: 14px; }
 
-    /* ─── STATS ─── */
-    #stats {
-      padding: 80px 0;
-      background: var(--bg);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-    }
-    .stat-item {
-      text-align: center;
-      padding: 40px 24px;
-      border-right: 1px solid var(--border);
-    }
+    /* ─── STATS (LARANJA) ─── */
+    #stats { padding: 80px 0; position: relative; overflow: hidden; background: var(--orange-bg); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; position: relative; z-index: 2; }
+    .stat-item { text-align: center; padding: 40px 24px; border-right: 1px solid rgba(255,255,255,0.2); }
     .stat-item:last-child { border-right: none; }
-    .stat-num {
-      font-size: clamp(40px, 5vw, 64px);
-      font-weight: 900;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1;
-      margin-bottom: 10px;
-    }
-    .stat-label {
-      font-size: 15px;
-      color: var(--muted);
-      font-weight: 500;
-      line-height: 1.4;
-    }
+    .stat-num { font-size: clamp(48px,5vw,72px); font-weight: 900; color: #fff; line-height: 1; margin-bottom: 10px; }
+    .stat-label { font-size: 15px; color: rgba(255,255,255,0.78); font-weight: 500; line-height: 1.4; }
 
-    /* ─── CTA SECTION ─── */
-    #cta {
-      padding: 120px 0;
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-glow {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at center, rgba(255,69,0,0.12) 0%, transparent 70%);
-    }
-    .cta-inner {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-    .cta-title {
-      font-size: clamp(36px, 5vw, 64px);
-      font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: -1.5px;
-      margin-bottom: 24px;
-    }
-    .cta-text {
-      font-size: 18px;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.7;
-      margin-bottom: 48px;
-    }
-    .cta-actions {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-    .cta-actions .btn-primary {
-      font-size: 16px;
-      padding: 18px 40px;
-    }
-    .cta-contact {
-      margin-top: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-    }
-    .cta-contact-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    /* ─── CTA (DARK) ─── */
+    #cta { padding: 120px 0; position: relative; overflow: hidden; background: var(--bg); }
+    .cta-glow { position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(255,69,0,0.1) 0%, transparent 70%); }
+    .cta-inner { position: relative; z-index: 1; text-align: center; max-width: 720px; margin: 0 auto; }
+    .cta-title { font-size: clamp(36px,5vw,64px); font-weight: 900; line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 24px; }
+    .cta-text { font-size: 18px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 48px; }
+    .cta-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; }
+    .cta-actions .btn-primary { font-size: 16px; padding: 18px 40px; }
+    .cta-contact { margin-top: 48px; display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; }
+    .cta-contact-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
     .cta-contact-item:hover { color: #fff; }
-    .cta-contact-icon { font-size: 18px; }
 
-    /* ─── FOOTER ─── */
-    footer {
-      padding: 56px 0 40px;
-      border-top: 1px solid var(--border);
-      background: var(--surface);
-    }
-    .footer-top {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 64px;
-      margin-bottom: 48px;
-    }
-    .footer-brand img {
-      height: 36px;
-      width: auto;
-      margin-bottom: 16px;
-    }
-    .footer-tagline {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 24px;
-      max-width: 280px;
-    }
-    .footer-social {
-      display: flex;
-      gap: 12px;
-    }
-    .footer-social a {
-      width: 38px;
-      height: 38px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-    .footer-social a:hover {
-      border-color: var(--fire1);
-      color: var(--fire1);
-    }
-    .footer-col-title {
-      font-size: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: rgba(255,255,255,0.4);
-      margin-bottom: 20px;
-    }
-    .footer-links {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .footer-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 14px;
-      transition: color 0.2s;
-    }
+    /* ─── FOOTER (DARK) ─── */
+    footer { padding: 56px 0 40px; border-top: 1px solid var(--border); background: var(--surface); }
+    .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 64px; margin-bottom: 48px; }
+    .footer-brand img { height: 36px; width: auto; margin-bottom: 16px; }
+    .footer-tagline { font-size: 14px; color: rgba(255,255,255,0.35); line-height: 1.7; margin-bottom: 24px; max-width: 280px; }
+    .footer-social { display: flex; gap: 12px; }
+    .footer-social a { width: 38px; height: 38px; border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; color: rgba(255,255,255,0.4); text-decoration: none; transition: all 0.2s; }
+    .footer-social a:hover { border-color: var(--fire1); color: var(--fire1); }
+    .footer-col-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.3); margin-bottom: 20px; }
+    .footer-links { display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 14px; transition: color 0.2s; }
     .footer-links a:hover { color: #fff; }
-    .footer-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-      padding-top: 32px;
-      border-top: 1px solid var(--border);
-    }
-    .footer-copy {
-      font-size: 13px;
-      color: rgba(255,255,255,0.25);
-    }
-    .footer-patent {
-      font-size: 12px;
-      color: rgba(255,255,255,0.2);
-    }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-top: 32px; border-top: 1px solid var(--border); }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.2); }
+    .footer-patent { font-size: 12px; color: rgba(255,255,255,0.15); }
 
     /* ─── WHATSAPP FLOAT ─── */
     .whatsapp-float {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      z-index: 90;
-      width: 58px;
-      height: 58px;
-      background: #25D366;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4);
-      text-decoration: none;
-      transition: all 0.3s;
-      animation: wabounce 3s ease-in-out infinite 3s;
+      position: fixed; bottom: 28px; right: 28px; z-index: 90;
+      width: 58px; height: 58px; background: #25D366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 32px rgba(37,211,102,0.4); text-decoration: none;
+      transition: all 0.3s; animation: wabounce 3s ease-in-out infinite 3s;
     }
-    .whatsapp-float:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 40px rgba(37, 211, 102, 0.55);
-    }
+    .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 12px 40px rgba(37,211,102,0.55); }
     .whatsapp-float svg { width: 30px; height: 30px; fill: #fff; }
-    @keyframes wabounce {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08); }
+    @keyframes wabounce { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+
+    /* ─── DIVISOR ANIMADO entre seções ─── */
+    .section-divider {
+      height: 3px;
+      background: var(--gradient);
+      background-size: 200% 100%;
+      animation: shimmer 3s linear infinite;
     }
+    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
-      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .bento-grid { grid-template-columns: repeat(2,1fr); }
+      .bento-wide { grid-column: span 2; }
+      .bento-tall { grid-row: span 1; }
+      .bento-full { grid-column: span 2; }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
     }
     @media (max-width: 768px) {
       nav { padding: 16px 0; }
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: flex; }
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 48px;
-        text-align: center;
-      }
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; text-align: center; }
       .hero-subtitle { margin: 0 auto 40px; }
       .hero-actions { justify-content: center; }
       .hero-stats { justify-content: center; }
       .hero-visual { order: -1; }
-      .hero-bag-img { max-width: 320px; }
+      .hero-bag-img { max-width: 300px; }
       .hero-tag-1 { right: 0; }
       .hero-tag-2 { left: 0; }
       .problem-grid { grid-template-columns: 1fr; gap: 48px; }
       .problem-img { order: -1; }
-      .features-grid { grid-template-columns: 1fr; }
-      .steps-grid { grid-template-columns: 1fr; gap: 40px; }
-      .steps-grid::before { display: none; }
+      .bento-grid { grid-template-columns: 1fr; }
+      .bento-wide, .bento-tall, .bento-full { grid-column: span 1; grid-row: span 1; }
+      .steps-grid { grid-template-columns: 1fr; gap: 24px; }
+      .steps-line { display: none; }
       .whom-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
       .stat-item:nth-child(2) { border-right: none; }
-      .stat-item:nth-child(3), .stat-item:nth-child(4) { border-top: 1px solid var(--border); }
+      .stat-item:nth-child(3), .stat-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.2); }
       .footer-top { grid-template-columns: 1fr; gap: 40px; }
       .footer-bottom { flex-direction: column; text-align: center; }
     }
     @media (max-width: 480px) {
       .hero-title { font-size: 36px; }
-      .hero-stats { gap: 24px; }
+      .hero-stats { gap: 20px; }
       .hero-stat-value { font-size: 26px; }
-      .btn-primary, .btn-outline { padding: 14px 24px; font-size: 14px; }
+      .btn-primary, .btn-outline, .btn-light { padding: 14px 24px; font-size: 14px; }
       .cta-title { font-size: 32px; }
     }
   </style>
@@ -1005,7 +510,7 @@
     <a href="https://wa.me/5511978895054" target="_blank" class="btn-primary">Agendar Demo →</a>
   </div>
 
-  <!-- HERO -->
+  <!-- ████ HERO — DARK ████ -->
   <section id="hero">
     <div class="hero-glow"></div>
     <div class="hero-glow-left"></div>
@@ -1024,9 +529,7 @@
             <a href="https://wa.me/5511978895054?text=Olá!%20Quero%20agendar%20uma%20demonstração%20da%20Kenti" target="_blank" class="btn-primary">
               🚀 Agendar Demonstração
             </a>
-            <a href="#solution" class="btn-outline">
-              Ver como funciona
-            </a>
+            <a href="#solution" class="btn-outline">Ver como funciona</a>
           </div>
           <div class="hero-stats">
             <div>
@@ -1045,7 +548,6 @@
             </div>
           </div>
         </div>
-
         <div class="hero-visual reveal">
           <div class="hero-img-wrap">
             <div class="hero-glow-ring"></div>
@@ -1072,7 +574,10 @@
     </div>
   </section>
 
-  <!-- PARTNERS BAR -->
+  <!-- DIVISOR -->
+  <div class="section-divider"></div>
+
+  <!-- ████ PARCEIROS — DARK ████ -->
   <div id="partners-bar">
     <p class="partners-label">Alguns dos parceiros Kenti</p>
     <div style="overflow:hidden;">
@@ -1083,7 +588,6 @@
         <img class="partner-logo" src="https://static.wixstatic.com/media/66cf83_32f1bb4372ca46c8a42a93e2418d6ccc~mv2.jpg" alt="Margherita Pizzeria">
         <img class="partner-logo" src="https://static.wixstatic.com/media/4356af_6af30f2543334385acc9e1041c6a0884~mv2.png" alt="Camelo Pizzaria">
         <img class="partner-logo" src="https://static.wixstatic.com/media/4356af_d9990412f9d0492aa90ac09afa8f5cd7~mv2.png" alt="Pizzaria Soggiorno">
-        <!-- duplicated for seamless loop -->
         <img class="partner-logo" src="https://static.wixstatic.com/media/66cf83_32f1bb4372ca46c8a42a93e2418d6ccc~mv2.jpg" alt="Margherita Pizzeria">
         <img class="partner-logo" src="https://static.wixstatic.com/media/4356af_6af30f2543334385acc9e1041c6a0884~mv2.png" alt="Camelo Pizzaria">
         <img class="partner-logo" src="https://static.wixstatic.com/media/4356af_d9990412f9d0492aa90ac09afa8f5cd7~mv2.png" alt="Pizzaria Soggiorno">
@@ -1094,131 +598,146 @@
     </div>
   </div>
 
-  <!-- PROBLEM -->
+  <!-- ████ PROBLEMA — LARANJA ████ -->
   <section id="problem">
-    <div class="problem-bg"></div>
+    <div class="noise-overlay"></div>
     <div class="container">
       <div class="problem-grid">
         <div class="problem-img reveal">
           <img src="https://static.wixstatic.com/media/66cf83_063ebe703d624c77af8f4ce40156a109~mv2.jpg" alt="Comida quente e fumegante">
         </div>
-        <div class="problem-content reveal reveal-delay-2">
-          <div class="section-label">🥶 O Problema</div>
+        <div class="reveal reveal-delay-2">
+          <div class="section-label-light">🥶 O Problema</div>
           <h2 class="problem-title">
             Comida fria está<br>
-            <span class="gradient-text">destruindo</span><br>
+            <span style="text-decoration: underline; text-decoration-color: rgba(255,255,255,0.4); text-underline-offset: 6px;">destruindo</span><br>
             o seu delivery.
           </h2>
           <p class="problem-text">
             Avaliações ruins, clientes insatisfeitos e pedidos cancelados. A temperatura da comida é o fator número 1 de reclamação no delivery brasileiro.
           </p>
           <div class="problem-list">
-            <div class="problem-item">
-              <span class="problem-item-icon">❌</span>
-              Bags térmicas comuns apenas retardam o resfriamento — não aquecem
-            </div>
-            <div class="problem-item">
-              <span class="problem-item-icon">❌</span>
-              Pratos quentes (pizzas, massas, sopas) perdem qualidade em minutos
-            </div>
-            <div class="problem-item">
-              <span class="problem-item-icon">❌</span>
-              Entregas acima de 5 km chegam quase sempre frias ao cliente
-            </div>
-            <div class="problem-item">
-              <span class="problem-item-icon">❌</span>
-              Clientes insatisfeitos não recompram e ainda deixam avaliações negativas
-            </div>
+            <div class="problem-item"><span class="problem-item-icon">❌</span>Bags térmicas comuns apenas retardam o resfriamento — não aquecem</div>
+            <div class="problem-item"><span class="problem-item-icon">❌</span>Pizzas, massas e sopas perdem qualidade em minutos de trajeto</div>
+            <div class="problem-item"><span class="problem-item-icon">❌</span>Entregas acima de 5 km chegam quase sempre frias ao cliente</div>
+            <div class="problem-item"><span class="problem-item-icon">❌</span>Clientes insatisfeitos não recompram e deixam avaliações negativas</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SOLUTION / FEATURES -->
+  <!-- DIVISOR -->
+  <div class="section-divider"></div>
+
+  <!-- ████ SOLUÇÃO / BENTO — DARK ████ -->
   <section id="solution">
     <div class="container">
       <div class="solution-header reveal">
-        <div class="section-label">🔥 A Solução</div>
+        <div class="section-label-dark">🔥 A Solução</div>
         <h2 class="section-title">A revolução do<br><span class="gradient-text">mercado de delivery.</span></h2>
-        <p class="section-subtitle">
-          Tecnologia patenteada com sensores inteligentes que aquece ativamente durante todo o trajeto — não importa a distância.
-        </p>
+        <p class="section-subtitle">Tecnologia patenteada com sensores inteligentes que aquece ativamente durante todo o trajeto.</p>
       </div>
 
-      <div class="features-grid">
-        <div class="feature-card reveal reveal-delay-1">
-          <div class="feature-icon">🤖</div>
-          <div class="feature-title">100% Automatizada</div>
-          <div class="feature-text">Sensores inteligentes acionam o aquecimento automaticamente. Sem botões, sem complicação para o entregador.</div>
+      <div class="bento-grid">
+
+        <!-- Card grande: destaque -->
+        <div class="bento-card bento-featured bento-wide reveal reveal-delay-1">
+          <div class="bento-icon">🤖</div>
+          <div class="bento-title">100% Automatizada e Inteligente</div>
+          <div class="bento-text">Sensores internos detectam a presença do pedido e acionam o aquecimento automaticamente. Sem botões, sem configuração — o entregador não precisa fazer nada. A Kenti trabalha sozinha durante todo o trajeto.</div>
         </div>
-        <div class="feature-card reveal reveal-delay-2">
-          <div class="feature-icon">⚡</div>
-          <div class="feature-title">5h de Autonomia</div>
-          <div class="feature-text">Recarrega na tomada comum e mantém capacidade total por até 5 horas — o suficiente para um turno completo de entregas.</div>
+
+        <!-- Card tall: número de destaque -->
+        <div class="bento-card bento-tall reveal reveal-delay-2">
+          <div>
+            <div class="bento-icon">⚡</div>
+            <div class="bento-title">Autonomia de até</div>
+          </div>
+          <div class="bento-number">5h</div>
+          <div class="bento-text" style="margin-top:16px;">Recarrega em qualquer tomada comum. O suficiente para um turno completo de entregas.</div>
         </div>
-        <div class="feature-card reveal reveal-delay-3">
-          <div class="feature-icon">📍</div>
-          <div class="feature-title">Sem Limite de Distância</div>
-          <div class="feature-text">Entregas acima de 5 km sem a comida esfriar. Expanda sua área de atuação sem comprometer a qualidade.</div>
+
+        <!-- Card normal -->
+        <div class="bento-card reveal reveal-delay-1">
+          <div class="bento-icon">📍</div>
+          <div class="bento-title">+15km sem esfriar</div>
+          <div class="bento-text">Expanda sua área de entrega sem comprometer a qualidade. Alcance mais clientes, gere mais receita.</div>
         </div>
-        <div class="feature-card reveal reveal-delay-1">
-          <div class="feature-icon">📋</div>
-          <div class="feature-title">Mais Pratos no Cardápio</div>
-          <div class="feature-text">Pratos que dependiam do calor para ter qualidade voltam ao cardápio do delivery. Mais variedade, mais vendas.</div>
+
+        <!-- Card normal -->
+        <div class="bento-card reveal reveal-delay-2">
+          <div class="bento-icon">⭐</div>
+          <div class="bento-title">Avaliações 5 estrelas</div>
+          <div class="bento-text">Comida quente como do salão. Mais satisfação, mais avaliações positivas, mais clientes fiéis.</div>
         </div>
-        <div class="feature-card reveal reveal-delay-2">
-          <div class="feature-icon">⭐</div>
-          <div class="feature-title">Avaliações 5 Estrelas</div>
-          <div class="feature-text">Clientes recebem a comida quente como se fosse do salão. Mais satisfação, mais avaliações positivas, mais retorno.</div>
+
+        <!-- Card wide: mais pratos -->
+        <div class="bento-card bento-wide reveal reveal-delay-1">
+          <div class="bento-icon">📋</div>
+          <div class="bento-title">Mais pratos no cardápio de delivery</div>
+          <div class="bento-text">Pizzas, massas, sopas, risotos — pratos que dependiam do calor para ter qualidade voltam ao cardápio. Mais variedade atrai mais pedidos e aumenta o ticket médio.</div>
         </div>
-        <div class="feature-card reveal reveal-delay-3">
-          <div class="feature-icon">💰</div>
-          <div class="feature-title">Mais Lucro no Delivery</div>
-          <div class="feature-text">Mais entregas por turno, área maior, cardápio expandido e clientes fiéis. A Kenti se paga em poucas semanas.</div>
+
+        <!-- Card normal -->
+        <div class="bento-card reveal reveal-delay-2">
+          <div class="bento-icon">💰</div>
+          <div class="bento-title">Mais lucro delivery</div>
+          <div class="bento-text">A Kenti se paga rapidamente. Mais entregas, mais área, cardápio expandido e clientes que voltam.</div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
+  <!-- DIVISOR -->
+  <div class="section-divider"></div>
+
+  <!-- ████ COMO FUNCIONA — LARANJA ████ -->
   <section id="how">
+    <div class="noise-overlay"></div>
     <div class="container">
       <div class="how-header reveal">
-        <div class="section-label">⚙️ Como Funciona</div>
-        <h2 class="section-title">Simples. <span class="gradient-text">Inteligente. Eficiente.</span></h2>
-        <p class="section-subtitle">Em 3 etapas, a Kenti garante que a comida chegue quente na mesa do seu cliente.</p>
+        <div class="section-label-light">⚙️ Como Funciona</div>
+        <h2 class="section-title" style="color:#fff;">Simples.<br>Inteligente. Eficiente.</h2>
+        <p class="section-subtitle" style="color:rgba(255,255,255,0.72);">Em 3 etapas, a Kenti garante que a comida chegue quente na mesa do seu cliente.</p>
       </div>
-      <div class="steps-grid">
-        <div class="step-card reveal reveal-delay-1">
-          <div class="step-num">1</div>
-          <h3 class="step-title">Coloca a comida na bag</h3>
-          <p class="step-text">O restaurante embala normalmente e coloca na mochila Kenti. Os sensores detectam a presença do pedido automaticamente e iniciam o aquecimento.</p>
-        </div>
-        <div class="step-card reveal reveal-delay-2">
-          <div class="step-num">2</div>
-          <h3 class="step-title">A Kenti aquece o trajeto todo</h3>
-          <p class="step-text">Durante toda a entrega, a tecnologia patenteada mantém a temperatura ideal — seja 2 km ou 15 km de distância. Sem ação necessária do entregador.</p>
-        </div>
-        <div class="step-card reveal reveal-delay-3">
-          <div class="step-num">3</div>
-          <h3 class="step-title">Cliente recebe quente</h3>
-          <p class="step-text">A comida chega com a temperatura e qualidade de quem estava sentado no restaurante. Experiência premium, avaliação 5 estrelas.</p>
+      <div style="position:relative;">
+        <div class="steps-line"></div>
+        <div class="steps-grid">
+          <div class="step-card glass-card reveal reveal-delay-1">
+            <div class="step-num">1</div>
+            <h3 class="step-title">Coloca a comida na bag</h3>
+            <p class="step-text">O restaurante embala normalmente e coloca na mochila Kenti. Os sensores detectam o pedido e iniciam o aquecimento automaticamente.</p>
+          </div>
+          <div class="step-card glass-card reveal reveal-delay-2">
+            <div class="step-num">2</div>
+            <h3 class="step-title">A Kenti aquece o trajeto todo</h3>
+            <p class="step-text">Durante toda a entrega, a tecnologia patenteada mantém a temperatura ideal — seja 2 km ou 15 km. Sem ação do entregador.</p>
+          </div>
+          <div class="step-card glass-card reveal reveal-delay-3">
+            <div class="step-num">3</div>
+            <h3 class="step-title">Cliente recebe quente</h3>
+            <p class="step-text">A comida chega com a temperatura e qualidade de quem estava sentado no restaurante. Experiência premium, avaliação 5 estrelas.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOR WHOM -->
+  <!-- DIVISOR -->
+  <div class="section-divider"></div>
+
+  <!-- ████ PARA QUEM — DARK ████ -->
   <section id="for-whom">
     <div class="container">
-      <div class="solution-header reveal" style="margin-bottom: 48px;">
-        <div class="section-label">👥 Para Quem</div>
-        <h2 class="section-title">Dois lados. <span class="gradient-text">Uma só solução.</span></h2>
+      <div class="solution-header reveal" style="margin-bottom:48px;">
+        <div class="section-label-dark">👥 Para Quem</div>
+        <h2 class="section-title">Dois lados.<br><span class="gradient-text">Uma só solução.</span></h2>
       </div>
       <div class="whom-grid">
         <div class="whom-card reveal reveal-delay-1">
-          <div class="whom-card-bg" style="background-image: url('https://static.wixstatic.com/media/66cf83_4bfc694a135c440cb670d439caedea53~mv2.jpg');"></div>
+          <div class="whom-card-bg" style="background-image:url('https://static.wixstatic.com/media/66cf83_4bfc694a135c440cb670d439caedea53~mv2.jpg');"></div>
           <div class="whom-content">
             <div class="whom-tag">Para Restaurantes</div>
             <h3 class="whom-title">Lucre mais com<br>o seu delivery.</h3>
@@ -1235,15 +754,15 @@
           </div>
         </div>
         <div class="whom-card reveal reveal-delay-2">
-          <div class="whom-card-bg" style="background-image: url('https://static.wixstatic.com/media/66cf83_063ebe703d624c77af8f4ce40156a109~mv2.jpg');"></div>
+          <div class="whom-card-bg" style="background-image:url('https://static.wixstatic.com/media/66cf83_063ebe703d624c77af8f4ce40156a109~mv2.jpg');"></div>
           <div class="whom-content">
             <div class="whom-tag">Para Consumidores</div>
             <h3 class="whom-title">Comida quente<br>na sua porta.</h3>
-            <p class="whom-text">Peça dos restaurantes que entregam com Kenti e receba a comida com a temperatura de quem estava sentado no salão.</p>
+            <p class="whom-text">Peça dos restaurantes que entregam com Kenti e receba a comida na temperatura perfeita, como se fosse do salão.</p>
             <div class="whom-list">
-              <div class="whom-list-item">Comida no ponto certo, sem desculpas</div>
               <div class="whom-list-item">Pizza crocante, sopa fumegando, burger suculento</div>
               <div class="whom-list-item">Experiência gastronômica em casa</div>
+              <div class="whom-list-item">Comida no ponto certo, sem desculpas</div>
               <div class="whom-list-item">Restaurantes certificados Kenti perto de você</div>
             </div>
             <a href="https://wa.me/5511978895054?text=Olá!%20Quero%20saber%20onde%20tem%20restaurantes%20com%20Kenti" target="_blank" class="btn-primary">
@@ -1255,12 +774,16 @@
     </div>
   </section>
 
-  <!-- STATS -->
+  <!-- DIVISOR -->
+  <div class="section-divider"></div>
+
+  <!-- ████ STATS — LARANJA ████ -->
   <section id="stats">
+    <div class="noise-overlay"></div>
     <div class="container">
       <div class="stats-grid">
         <div class="stat-item reveal">
-          <div class="stat-num">5h</div>
+          <div class="stat-num" data-target="5" data-suffix="h">5h</div>
           <div class="stat-label">de autonomia por recarga</div>
         </div>
         <div class="stat-item reveal reveal-delay-1">
@@ -1279,12 +802,15 @@
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- DIVISOR -->
+  <div class="section-divider"></div>
+
+  <!-- ████ CTA — DARK ████ -->
   <section id="cta">
     <div class="cta-glow"></div>
     <div class="container">
       <div class="cta-inner">
-        <div class="section-label" style="justify-content:center; display:inline-flex;">🚀 Comece Agora</div>
+        <div class="section-label-dark" style="justify-content:center;display:inline-flex;">🚀 Comece Agora</div>
         <h2 class="cta-title reveal">
           Pronto para<br>
           <span class="gradient-text">revolucionar</span><br>
@@ -1299,20 +825,11 @@
           </a>
         </div>
         <div class="cta-contact reveal reveal-delay-3">
-          <a href="mailto:contato@kentifood.com" class="cta-contact-item">
-            <span class="cta-contact-icon">✉️</span>
-            contato@kentifood.com
-          </a>
-          <div style="width:1px; height:20px; background:var(--border);"></div>
-          <a href="https://wa.me/5511978895054" class="cta-contact-item" target="_blank">
-            <span class="cta-contact-icon">💬</span>
-            +55 11 97889-5054
-          </a>
-          <div style="width:1px; height:20px; background:var(--border);"></div>
-          <a href="https://www.instagram.com/kentifood/" class="cta-contact-item" target="_blank">
-            <span class="cta-contact-icon">📸</span>
-            @kentifood
-          </a>
+          <a href="mailto:contato@kentifood.com" class="cta-contact-item">✉️ contato@kentifood.com</a>
+          <div style="width:1px;height:20px;background:var(--border);"></div>
+          <a href="https://wa.me/5511978895054" class="cta-contact-item" target="_blank">💬 +55 11 97889-5054</a>
+          <div style="width:1px;height:20px;background:var(--border);"></div>
+          <a href="https://www.instagram.com/kentifood/" class="cta-contact-item" target="_blank">📸 @kentifood</a>
         </div>
       </div>
     </div>
@@ -1326,15 +843,9 @@
           <img src="https://static.wixstatic.com/media/66cf83_83ddf1d63eb04847b019d4451e2ba1dc~mv2.png" alt="Kenti">
           <p class="footer-tagline">A revolução do mercado de delivery. Tecnologia patenteada que garante comida quente da cozinha à mesa do cliente.</p>
           <div class="footer-social">
-            <a href="https://www.instagram.com/kentifood/" target="_blank" title="Instagram">
-              📸
-            </a>
-            <a href="https://www.facebook.com/Kentifoodtech" target="_blank" title="Facebook">
-              👍
-            </a>
-            <a href="https://wa.me/5511978895054" target="_blank" title="WhatsApp">
-              💬
-            </a>
+            <a href="https://www.instagram.com/kentifood/" target="_blank" title="Instagram">📸</a>
+            <a href="https://www.facebook.com/Kentifoodtech" target="_blank" title="Facebook">👍</a>
+            <a href="https://wa.me/5511978895054" target="_blank" title="WhatsApp">💬</a>
           </div>
         </div>
         <div>
@@ -1374,9 +885,7 @@
   <script>
     // Navbar scroll
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 40);
-    });
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
 
     // Mobile menu
     const hamburger = document.getElementById('hamburger');
@@ -1389,47 +898,15 @@
     // Reveal on scroll
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(el => observer.observe(el));
 
-    // Counter animation for stats
-    function animateCounter(el, target, suffix) {
-      const duration = 1800;
-      const start = performance.now();
-      function update(now) {
-        const elapsed = now - start;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.floor(eased * (parseFloat(target)));
-        el.textContent = current + suffix;
-        if (progress < 1) requestAnimationFrame(update);
-        else el.textContent = target + suffix;
-      }
-      requestAnimationFrame(update);
-    }
-    const statsSection = document.getElementById('stats');
-    let statsAnimated = false;
-    const statsObserver = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && !statsAnimated) {
-        statsAnimated = true;
-        // No counter animation needed for these values; they're text-based
-      }
-    }, { threshold: 0.3 });
-    statsObserver.observe(statsSection);
-
-    // Smooth scroll for anchor links
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
       });
     });
   </script>
